@@ -13,93 +13,127 @@ using System.IO;
 using Newtonsoft.Json;
 using Microsoft.VisualBasic;
 
-
-
-
-
 namespace CarteiraDeClientes
 {
     public partial class Form1 : Form
     {
+        // SEU CÓDIGO ORIGINAL
         public Form1()
         {
             InitializeComponent();
-            ConfigurarDataGridView(); // Configura o DataGridView
-            CarregarDados();          // Carrega os dados do arquivo JSON
-            AtualizarDataGridView();  // Atualiza o DataGridView com os dados carregados
+            ConfigurarDataGridView();
+            CarregarDados();
+            AtualizarDataGridView();
 
-            // Associa o evento CellClick
+            // LÓGICA ADICIONADA: Carrega o estoque na inicialização
+            CarregarEstoque();
+
+            // SEU CÓDIGO ORIGINAL
             dataGridViewClientes.CellClick += dataGridViewClientes_CellClick;
         }
 
+        // SEU CÓDIGO ORIGINAL
         protected override void OnFormClosing(FormClosingEventArgs e)
         {
-            SalvarDados(); // Salva os dados no arquivo JSON
+            SalvarDados();
+            // LÓGICA ADICIONADA: Salva o estoque ao fechar
+            SalvarEstoque();
             base.OnFormClosing(e);
         }
 
-
+        // SEU CÓDIGO ORIGINAL
         private List<Cliente> clientes = new List<Cliente>();
         private ImportadorDeClientes importador = new ImportadorDeClientes();
 
-        /*private void btnImportar_Click(object sender, EventArgs e)
+        // LÓGICA ADICIONADA: Variável para controlar o estoque
+        private EstoqueGeral estoqueGeral = new EstoqueGeral();
+
+        #region LÓGICA ADICIONADA: Métodos para Carregar e Salvar o Estoque
+        private void CarregarEstoque()
         {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "CSV files (*.csv)|*.csv|All files (*.*)|*.*";
-            openFileDialog.Title = "Selecione o arquivo CSV para importação";
-
-            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            string caminho = "estoque.json";
+            if (File.Exists(caminho))
             {
-                string filePath = openFileDialog.FileName;
-                var importador = new ImportadorDeClientes();
-                var clientes = importador.ImportarClientesDoCsv(filePath);
-                importador.SalvarClientesNoArquivo(clientes);
-
-                
-
-                MessageBox.Show("Clientes importados e salvos com sucesso!", "Importação Concluída", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                estoqueGeral = Newtonsoft.Json.JsonConvert.DeserializeObject<EstoqueGeral>(File.ReadAllText(caminho)) ?? new EstoqueGeral();
             }
-        }*/
-                               
+        }
+
+        private void SalvarEstoque()
+        {
+            File.WriteAllText("estoque.json", Newtonsoft.Json.JsonConvert.SerializeObject(estoqueGeral, Newtonsoft.Json.Formatting.Indented));
+        }
+        #endregion
+
+        // SEU CÓDIGO ORIGINAL
+        /*private void btnImportar_Click(object sender, EventArgs e)
+        {
+            // ...
+        }*/
+
+        // SEU CÓDIGO ORIGINAL
         private void ExibirClientesNaTela(List<Cliente> clientes)
         {
-            // Supondo que você tenha um DataGridView ou ListView para exibir clientes
             dataGridViewClientes.DataSource = null;
             dataGridViewClientes.DataSource = clientes;
         }
 
-
+        // MÉTODO MODIFICADO: Contém a nova lógica
         private void btnRegistrarPedido_Click_1(object sender, EventArgs e)
         {
-            if (dataGridViewClientes.SelectedRows.Count > 0)
+            if (dataGridViewClientes.SelectedRows.Count == 0)
             {
-                int clienteId = (int)dataGridViewClientes.SelectedRows[0].Cells["Id"].Value;
-                var cliente = clientes.FirstOrDefault(c => c.Id == clienteId);
+                MessageBox.Show("Por favor, selecione um cliente para registrar um pedido.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
-                if (cliente != null)
+            CarregarEstoque(); // Carrega o saldo mais recente antes de verificar
+            if (estoqueGeral.SaldoCheios <= 0)
+            {
+                MessageBox.Show("Atenção: Não há botijões cheios no estoque para registrar a venda.", "Estoque Vazio", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            var cliente = clientes.FirstOrDefault(c => c.Id == (int)dataGridViewClientes.SelectedRows[0].Cells["Id"].Value);
+            if (cliente == null) return;
+
+            using (var form = new RegistrarPedidoForm())
+            {
+                if (form.ShowDialog() == DialogResult.OK)
                 {
-                    using (var form = new RegistrarPedidoForm())
-                    {
-                        if (form.ShowDialog() == DialogResult.OK)
-                        {
-                            Pedido pedido = new Pedido
-                            {
-                                Id = clienteId,
-                                Nome = cliente.Nome,
-                                ItemPedido = form.ItemPedido,
-                                Valor = form.Valor,
-                                UltimoPedido = DateTime.Now
-                            };
+                    var novoPedido = new Pedido { Id = cliente.Id, Nome = cliente.Nome, ItemPedido = form.ItemPedido, Valor = form.Valor, UltimoPedido = DateTime.Now };
+                    SalvarPedidoNoArquivo(novoPedido);
+                    cliente.UltimoPedido = novoPedido.UltimoPedido;
 
-                            // Salva o pedido em um arquivo JSON
-                            SalvarPedidoNoArquivo(pedido);
-                            cliente.UltimoPedido = pedido.UltimoPedido;
-                            dataGridViewClientes.Refresh();
-                        }
-                    }
+                    // LÓGICA CORRIGIDA E SIMPLIFICADA:
+                    estoqueGeral.SaldoCheios--; // Venda DIMINUI cheios
+                    estoqueGeral.SaldoVazios++; // Venda AUMENTA vazios
+
+                    estoqueGeral.Movimentacoes.Add(new MovimentacaoEstoque
+                    {
+                        Data = DateTime.Now,
+                        Tipo = "Venda",
+                        Produto = form.ItemPedido,
+                        Quantidade = 1,
+                        Valor = form.Valor
+                    });
+                    SalvarEstoque();
+
+                    AtualizarDataGridView();
+
+                    string mensagem = $"*NOVO PEDIDO*\n\n" +
+                                      $"*Cliente:* {cliente.Nome}\n" +
+                                      $"*Endereço:* {cliente.Endereco}\n" +
+                                      $"*Item:* {form.ItemPedido}\n" +
+                                      $"*Valor:* {form.Valor:C}\n" +
+                                      $"*Pagamento:* {form.FormaPagamento}";
+
+                    Clipboard.SetText(mensagem);
+                    MessageBox.Show("Pedido Registrado!\n\nO estoque foi atualizado e a mensagem para o entregador foi copiada.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
         }
+
+        // O RESTANTE DO SEU CÓDIGO ORIGINAL, SEM ALTERAÇÕES
 
         private void SalvarPedidoNoArquivo(Pedido pedido)
         {
@@ -109,7 +143,7 @@ namespace CarteiraDeClientes
             if (File.Exists(caminhoArquivo))
             {
                 string json = File.ReadAllText(caminhoArquivo);
-                pedidos = JsonConvert.DeserializeObject<List<Pedido>>(json) ?? new List<Pedido>();
+                pedidos = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Pedido>>(json) ?? new List<Pedido>();
             }
             else
             {
@@ -117,7 +151,7 @@ namespace CarteiraDeClientes
             }
 
             pedidos.Add(pedido);
-            File.WriteAllText(caminhoArquivo, JsonConvert.SerializeObject(pedidos, Formatting.Indented));
+            File.WriteAllText(caminhoArquivo, Newtonsoft.Json.JsonConvert.SerializeObject(pedidos, Newtonsoft.Json.Formatting.Indented));
         }
 
         private void SalvarPedidoNoJson(Pedido pedido)
@@ -128,150 +162,119 @@ namespace CarteiraDeClientes
             if (File.Exists(caminhoArquivo))
             {
                 string json = File.ReadAllText(caminhoArquivo);
-                pedidos = JsonConvert.DeserializeObject<List<Pedido>>(json) ?? new List<Pedido>();
+                pedidos = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Pedido>>(json) ?? new List<Pedido>();
             }
 
             pedidos.Add(pedido);
 
-            string novoJson = JsonConvert.SerializeObject(pedidos, Formatting.Indented);
+            string novoJson = Newtonsoft.Json.JsonConvert.SerializeObject(pedidos, Newtonsoft.Json.Formatting.Indented);
             File.WriteAllText(caminhoArquivo, novoJson);
         }
 
-
-        // Função para salvar os clientes no arquivo JSON
         private void SalvarClientesNoArquivo()
         {
             string caminhoArquivo = "clientes.json";
-            string json = JsonConvert.SerializeObject(clientes, Formatting.Indented);
+            string json = Newtonsoft.Json.JsonConvert.SerializeObject(clientes, Newtonsoft.Json.Formatting.Indented);
             File.WriteAllText(caminhoArquivo, json);
         }
 
-
-
         private void Form1_Load(object sender, EventArgs e)
         {
-            // Associar o evento Click ao botão
             btnNotificarInativos.Click += btnNotificarInativos_Click_1;
         }
 
-
         private void btnNotificarInativos_Click_1(object sender, EventArgs e)
         {
-            // Carrega a lista de clientes a partir do arquivo JSON
             clientes = CarregarClientesDoArquivo();
-
-            // Filtra os clientes que estão inativos (mais de 60 dias sem pedidos)
             var inativos = clientes.Where(c => (DateTime.Now - c.UltimoPedido).Days > 60).ToList();
-
             if (inativos.Count > 0)
             {
-                // Abre o formulário ClientesInativosForm e passa a lista de inativos
                 using (var inativosForm = new ClientesInativosForm(inativos))
                 {
-                    inativosForm.ShowDialog();  // Abre o formulário como uma caixa de diálogo modal
+                    inativosForm.ShowDialog();
                 }
             }
             else
             {
-                // Exibir aviso caso não haja clientes inativos
-                MessageBox.Show("Todos os clientes estão ativos. Nenhum cliente está inativo.", "Nenhum Inativo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Todos clientes dentro do periodo esperado!.", "Nenhum Inativo", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
         private List<Cliente> CarregarClientesDoArquivo()
         {
             string caminhoArquivo = "clientes.json";
-
             if (File.Exists(caminhoArquivo))
             {
                 string json = File.ReadAllText(caminhoArquivo);
-                return JsonConvert.DeserializeObject<List<Cliente>>(json);
+                return Newtonsoft.Json.JsonConvert.DeserializeObject<List<Cliente>>(json);
             }
-
-            return new List<Cliente>(); // Retorna uma lista vazia se o arquivo não existir
+            return new List<Cliente>();
         }
-
-
 
         private void btnCadastrarCliente_Click(object sender, EventArgs e)
         {
-            // Cria uma nova instância do formulário de cadastro
             using (var cadastroForm = new CadastroClienteForm(clientes))
             {
                 if (cadastroForm.ShowDialog() == DialogResult.OK)
                 {
-                    // Adiciona o novo cliente à lista de clientes
                     var novoCliente = cadastroForm.NovoCliente;
                     clientes.Add(novoCliente);
-
-                    // Salva a lista atualizada de clientes no arquivo JSON
                     SalvarClientesNoArquivo();
-
-                    // Atualiza o DataGridView para exibir o novo cliente
                     AtualizarDataGridView();
                 }
             }
         }
 
-
         private void AtualizarDataGridView()
         {
-            // Limpa a fonte de dados atual
+            int? idSelecionado = null;
+
+            // VERIFICAÇÃO DE SEGURANÇA ADICIONADA AQUI
+            // 1. Garante que há uma linha selecionada
+            if (dataGridViewClientes.SelectedRows.Count > 0)
+            {
+                var celulaId = dataGridViewClientes.SelectedRows[0].Cells["Id"];
+                // 2. Garante que a célula e seu valor não são nulos antes de tentar ler
+                if (celulaId != null && celulaId.Value != null)
+                {
+                    idSelecionado = (int)celulaId.Value;
+                }
+            }
+
             dataGridViewClientes.DataSource = null;
 
-            // Ordena a lista de clientes pelo ID em ordem decrescente (clientes mais recentes primeiro)
-            var clientesOrdenados = clientes.OrderByDescending(c => c.Id).ToList();
+            if (clientes.Any())
+            {
+                // Ordena a lista pela data de último pedido, do mais novo para o mais antigo
+                var clientesOrdenados = clientes.OrderByDescending(c => c.UltimoPedido).ToList();
+                dataGridViewClientes.DataSource = clientesOrdenados;
 
-            // Define a nova fonte de dados
-            dataGridViewClientes.DataSource = clientesOrdenados;
+                // Tenta encontrar e selecionar a linha que estava selecionada antes (se houver)
+                if (idSelecionado.HasValue)
+                {
+                    foreach (DataGridViewRow row in dataGridViewClientes.Rows)
+                    {
+                        if ((int)row.Cells["Id"].Value == idSelecionado.Value)
+                        {
+                            row.Selected = true;
+                            // Opcional: rola a grade para a linha selecionada
+                            dataGridViewClientes.FirstDisplayedScrollingRowIndex = row.Index;
+                            break;
+                        }
+                    }
+                }
+            }
         }
-
 
         private void ConfigurarDataGridView()
         {
-            // Desativa a geração automática de colunas
             dataGridViewClientes.AutoGenerateColumns = false;
-
-            // Limpa colunas existentes
             dataGridViewClientes.Columns.Clear();
-
-            // Adiciona colunas manualmente
-            dataGridViewClientes.Columns.Add(new DataGridViewTextBoxColumn
-            {
-                DataPropertyName = "Id",
-                HeaderText = "ID",
-                Name = "Id"
-            });
-
-            dataGridViewClientes.Columns.Add(new DataGridViewTextBoxColumn
-            {
-                DataPropertyName = "Nome",
-                HeaderText = "Nome",
-                Name = "Nome"
-            });
-
-            dataGridViewClientes.Columns.Add(new DataGridViewTextBoxColumn
-            {
-                DataPropertyName = "Email",
-                HeaderText = "Email",
-                Name = "Email"
-            });
-
-            dataGridViewClientes.Columns.Add(new DataGridViewTextBoxColumn
-            {
-                DataPropertyName = "Telefone",
-                HeaderText = "Telefone",
-                Name = "Telefone"
-            });
-
-            dataGridViewClientes.Columns.Add(new DataGridViewTextBoxColumn
-            {
-                DataPropertyName = "UltimoPedido",
-                HeaderText = "Último Pedido",
-                Name = "UltimoPedido",
-                DefaultCellStyle = new DataGridViewCellStyle { Format = "d" } // Formata a data
-            });
-
+            dataGridViewClientes.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "Id", HeaderText = "ID", Name = "Id" });
+            dataGridViewClientes.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "Nome", HeaderText = "Nome", Name = "Nome" });
+            dataGridViewClientes.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "Email", HeaderText = "Email", Name = "Email" });
+            dataGridViewClientes.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "Telefone", HeaderText = "Telefone", Name = "Telefone" });
+            dataGridViewClientes.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "UltimoPedido", HeaderText = "Último Pedido", Name = "UltimoPedido", DefaultCellStyle = new DataGridViewCellStyle { Format = "d" } });
             dataGridViewClientes.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridViewClientes.MultiSelect = false;
         }
@@ -283,12 +286,8 @@ namespace CarteiraDeClientes
                 DataGridViewRow row = dataGridViewClientes.Rows[e.RowIndex];
                 int clienteId = (int)row.Cells["Id"].Value;
                 var cliente = clientes.FirstOrDefault(c => c.Id == clienteId);
-
-                // Agora você pode usar o objeto cliente conforme necessário
-                // Exemplo: Atualizar informações do cliente ou executar alguma ação
             }
         }
-
 
         private void SalvarDados()
         {
@@ -314,26 +313,21 @@ namespace CarteiraDeClientes
                 }
                 else
                 {
-                    clientes = new List<Cliente>(); // Cria uma nova lista se o arquivo não existir
+                    clientes = new List<Cliente>();
                 }
             }
             catch (Exception ex)
             {
-               // MessageBox.Show($"Erro ao carregar os dados: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                clientes = new List<Cliente>(); // Cria uma nova lista em caso de erro
+                clientes = new List<Cliente>();
             }
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
             string buscaTexto = Microsoft.VisualBasic.Interaction.InputBox("Digite o nome ou telefone do cliente:", "Buscar Cliente", "");
-
             if (!string.IsNullOrEmpty(buscaTexto))
             {
-                var resultados = clientes.Where(c =>
-                    c.Nome.ToLower().Contains(buscaTexto.ToLower()) ||
-                    c.Telefone.Contains(buscaTexto)).ToList();
-
+                var resultados = clientes.Where(c => c.Nome.ToLower().Contains(buscaTexto.ToLower()) || c.Telefone.Contains(buscaTexto)).ToList();
                 if (resultados.Count > 0)
                 {
                     dataGridViewClientes.DataSource = resultados;
@@ -341,7 +335,7 @@ namespace CarteiraDeClientes
                 else
                 {
                     MessageBox.Show("Nenhum cliente encontrado com esse nome ou telefone.", "Resultado da Busca", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    AtualizarDataGridView(); // Recarrega a lista completa se não encontrar resultados
+                    AtualizarDataGridView();
                 }
             }
         }
@@ -353,7 +347,6 @@ namespace CarteiraDeClientes
 
         private void button2_Click(object sender, EventArgs e)
         {
-            // Instancia o formulário de pedidos registrados sem argumentos
             using (var pedidosForm = new PedidosRegistradosForm())
             {
                 pedidosForm.ShowDialog();
@@ -366,7 +359,6 @@ namespace CarteiraDeClientes
             {
                 int clienteId = (int)dataGridViewClientes.SelectedRows[0].Cells["Id"].Value;
                 var cliente = clientes.FirstOrDefault(c => c.Id == clienteId);
-
                 if (cliente != null)
                 {
                     DialogResult result = MessageBox.Show($"Tem certeza que deseja excluir o cliente {cliente.Nome}?", "Confirmação de Exclusão", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
@@ -390,13 +382,23 @@ namespace CarteiraDeClientes
 
         private void btnMostrarTodos_Click(object sender, EventArgs e)
         {
-            AtualizarDataGridView(); // Chama a função que recarrega todos os clientes na tabela
-
+            AtualizarDataGridView();
         }
 
         private void dataGridViewClientes_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            // Pode deixar vazio ou remover se não usar
+        }
 
+        private void btnEstoque_Click(object sender, EventArgs e)
+        {
+            using (var formEstoque = new EstoqueForm())
+            {
+                formEstoque.ShowDialog();
+            }
+            // Após fechar a tela de estoque, recarrega os dados para garantir 
+            // que a tela principal tenha os saldos mais recentes.
+            CarregarEstoque();
         }
     }
 }

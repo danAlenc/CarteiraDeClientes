@@ -15,6 +15,7 @@ namespace CarteiraDeClientes
         public string Nome { get; set; }
         public string Email { get; set; } // Certifique-se de que esta propriedade está definida
         public string Telefone { get; set; }
+        public string Endereco { get; set; } // Adicionar endereço
         public DateTime UltimoPedido { get; set; } // Adiciona o campo para o último pedido
     }
 

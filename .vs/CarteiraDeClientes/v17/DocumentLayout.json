@@ -1,18 +1,38 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "D:\\Documentos Daniel\\CODIGOS\\C#\\CarteiraDeClientes\\CarteiraDeClientes\\",
+  "WorkspaceRootPath": "D:\\Documentos Daniel\\CODIGOS\\C#\\CarteiraDeClientes\\CarteiraDeClientes-main\\CarteiraDeClientes-main\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{1FA1552A-73AC-4E27-9917-C366B2A318BB}|CarteiraDeClientes\\CarteiraDeClientes.csproj|d:\\documentos daniel\\codigos\\c#\\carteiradeclientes\\carteiradeclientes\\carteiradeclientes\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{1FA1552A-73AC-4E27-9917-C366B2A318BB}|CarteiraDeClientes\\CarteiraDeClientes.csproj|solutionrelative:carteiradeclientes\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{1FA1552A-73AC-4E27-9917-C366B2A318BB}|CarteiraDeClientes\\CarteiraDeClientes.csproj|d:\\documentos daniel\\codigos\\c#\\carteiradeclientes\\carteiradeclientes-main\\carteiradeclientes-main\\carteiradeclientes\\registrarpedidoform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{1FA1552A-73AC-4E27-9917-C366B2A318BB}|CarteiraDeClientes\\CarteiraDeClientes.csproj|solutionrelative:carteiradeclientes\\registrarpedidoform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{1FA1552A-73AC-4E27-9917-C366B2A318BB}|CarteiraDeClientes\\CarteiraDeClientes.csproj|D:\\Documentos Daniel\\CODIGOS\\C#\\CarteiraDeClientes\\CarteiraDeClientes\\carteiradeclientes\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{1FA1552A-73AC-4E27-9917-C366B2A318BB}|CarteiraDeClientes\\CarteiraDeClientes.csproj|D:\\Documentos Daniel\\CODIGOS\\C#\\CarteiraDeClientes\\CarteiraDeClientes-main\\CarteiraDeClientes-main\\carteiradeclientes\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{1FA1552A-73AC-4E27-9917-C366B2A318BB}|CarteiraDeClientes\\CarteiraDeClientes.csproj|solutionrelative:carteiradeclientes\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{1FA1552A-73AC-4E27-9917-C366B2A318BB}|CarteiraDeClientes\\CarteiraDeClientes.csproj|D:\\Documentos Daniel\\CODIGOS\\C#\\CarteiraDeClientes\\CarteiraDeClientes\\carteiradeclientes\\importadordeclientes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1FA1552A-73AC-4E27-9917-C366B2A318BB}|CarteiraDeClientes\\CarteiraDeClientes.csproj|solutionrelative:carteiradeclientes\\importadordeclientes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{1FA1552A-73AC-4E27-9917-C366B2A318BB}|CarteiraDeClientes\\CarteiraDeClientes.csproj|d:\\documentos daniel\\codigos\\c#\\carteiradeclientes\\carteiradeclientes-main\\carteiradeclientes-main\\carteiradeclientes\\estoqueform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1FA1552A-73AC-4E27-9917-C366B2A318BB}|CarteiraDeClientes\\CarteiraDeClientes.csproj|solutionrelative:carteiradeclientes\\estoqueform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1FA1552A-73AC-4E27-9917-C366B2A318BB}|CarteiraDeClientes\\CarteiraDeClientes.csproj|d:\\documentos daniel\\codigos\\c#\\carteiradeclientes\\carteiradeclientes-main\\carteiradeclientes-main\\carteiradeclientes\\estoqueform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{1FA1552A-73AC-4E27-9917-C366B2A318BB}|CarteiraDeClientes\\CarteiraDeClientes.csproj|solutionrelative:carteiradeclientes\\estoqueform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1FA1552A-73AC-4E27-9917-C366B2A318BB}|CarteiraDeClientes\\CarteiraDeClientes.csproj|d:\\documentos daniel\\codigos\\c#\\carteiradeclientes\\carteiradeclientes-main\\carteiradeclientes-main\\carteiradeclientes\\form1.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1FA1552A-73AC-4E27-9917-C366B2A318BB}|CarteiraDeClientes\\CarteiraDeClientes.csproj|solutionrelative:carteiradeclientes\\form1.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1FA1552A-73AC-4E27-9917-C366B2A318BB}|CarteiraDeClientes\\CarteiraDeClientes.csproj|d:\\documentos daniel\\codigos\\c#\\carteiradeclientes\\carteiradeclientes-main\\carteiradeclientes-main\\carteiradeclientes\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{1FA1552A-73AC-4E27-9917-C366B2A318BB}|CarteiraDeClientes\\CarteiraDeClientes.csproj|solutionrelative:carteiradeclientes\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1FA1552A-73AC-4E27-9917-C366B2A318BB}|CarteiraDeClientes\\CarteiraDeClientes.csproj|d:\\documentos daniel\\codigos\\c#\\carteiradeclientes\\carteiradeclientes-main\\carteiradeclientes-main\\carteiradeclientes\\cadastroclienteform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1FA1552A-73AC-4E27-9917-C366B2A318BB}|CarteiraDeClientes\\CarteiraDeClientes.csproj|solutionrelative:carteiradeclientes\\cadastroclienteform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1FA1552A-73AC-4E27-9917-C366B2A318BB}|CarteiraDeClientes\\CarteiraDeClientes.csproj|d:\\documentos daniel\\codigos\\c#\\carteiradeclientes\\carteiradeclientes-main\\carteiradeclientes-main\\carteiradeclientes\\cliente.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1FA1552A-73AC-4E27-9917-C366B2A318BB}|CarteiraDeClientes\\CarteiraDeClientes.csproj|solutionrelative:carteiradeclientes\\cliente.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -22,44 +42,108 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "ImportadorDeClientes.cs",
-              "DocumentMoniker": "D:\\Documentos Daniel\\CODIGOS\\C#\\CarteiraDeClientes\\CarteiraDeClientes\\CarteiraDeClientes\\ImportadorDeClientes.cs",
-              "RelativeDocumentMoniker": "CarteiraDeClientes\\ImportadorDeClientes.cs",
-              "ToolTip": "D:\\Documentos Daniel\\CODIGOS\\C#\\CarteiraDeClientes\\CarteiraDeClientes\\CarteiraDeClientes\\ImportadorDeClientes.cs",
-              "RelativeToolTip": "CarteiraDeClientes\\ImportadorDeClientes.cs",
-              "ViewState": "AQIAAAsAAAAAAAAAAAAQwBIAAAANAAAA",
+              "DocumentIndex": 4,
+              "Title": "Form1.Designer.cs",
+              "DocumentMoniker": "D:\\Documentos Daniel\\CODIGOS\\C#\\CarteiraDeClientes\\CarteiraDeClientes-main\\CarteiraDeClientes-main\\CarteiraDeClientes\\Form1.Designer.cs",
+              "RelativeDocumentMoniker": "CarteiraDeClientes\\Form1.Designer.cs",
+              "ToolTip": "D:\\Documentos Daniel\\CODIGOS\\C#\\CarteiraDeClientes\\CarteiraDeClientes-main\\CarteiraDeClientes-main\\CarteiraDeClientes\\Form1.Designer.cs",
+              "RelativeToolTip": "CarteiraDeClientes\\Form1.Designer.cs",
+              "ViewState": "AQIAAD8AAAAAAAAAAAArwFEAAABkAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-24T16:30:43.837Z"
+              "WhenOpened": "2025-09-11T19:09:33.129Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Cliente.cs",
+              "DocumentMoniker": "D:\\Documentos Daniel\\CODIGOS\\C#\\CarteiraDeClientes\\CarteiraDeClientes-main\\CarteiraDeClientes-main\\CarteiraDeClientes\\Cliente.cs",
+              "RelativeDocumentMoniker": "CarteiraDeClientes\\Cliente.cs",
+              "ToolTip": "D:\\Documentos Daniel\\CODIGOS\\C#\\CarteiraDeClientes\\CarteiraDeClientes-main\\CarteiraDeClientes-main\\CarteiraDeClientes\\Cliente.cs",
+              "RelativeToolTip": "CarteiraDeClientes\\Cliente.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABEAAABCAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-11T19:01:35.222Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
               "Title": "Form1.cs",
-              "DocumentMoniker": "D:\\Documentos Daniel\\CODIGOS\\C#\\CarteiraDeClientes\\CarteiraDeClientes\\CarteiraDeClientes\\Form1.cs",
+              "DocumentMoniker": "D:\\Documentos Daniel\\CODIGOS\\C#\\CarteiraDeClientes\\CarteiraDeClientes-main\\CarteiraDeClientes-main\\CarteiraDeClientes\\Form1.cs",
               "RelativeDocumentMoniker": "CarteiraDeClientes\\Form1.cs",
-              "ToolTip": "D:\\Documentos Daniel\\CODIGOS\\C#\\CarteiraDeClientes\\CarteiraDeClientes\\CarteiraDeClientes\\Form1.cs",
+              "ToolTip": "D:\\Documentos Daniel\\CODIGOS\\C#\\CarteiraDeClientes\\CarteiraDeClientes-main\\CarteiraDeClientes-main\\CarteiraDeClientes\\Form1.cs",
               "RelativeToolTip": "CarteiraDeClientes\\Form1.cs",
-              "ViewState": "AQIAABsAAAAAAAAAAAAewDcAAAAdAAAA",
+              "ViewState": "AQIAAOcAAAAAAAAAAAAkwAoBAAAJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-08-19T18:44:59.457Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 5,
               "Title": "Form1.cs [Design]",
-              "DocumentMoniker": "D:\\Documentos Daniel\\CODIGOS\\C#\\CarteiraDeClientes\\CarteiraDeClientes\\CarteiraDeClientes\\Form1.cs",
+              "DocumentMoniker": "D:\\Documentos Daniel\\CODIGOS\\C#\\CarteiraDeClientes\\CarteiraDeClientes-main\\CarteiraDeClientes-main\\CarteiraDeClientes\\Form1.cs",
               "RelativeDocumentMoniker": "CarteiraDeClientes\\Form1.cs",
-              "ToolTip": "D:\\Documentos Daniel\\CODIGOS\\C#\\CarteiraDeClientes\\CarteiraDeClientes\\CarteiraDeClientes\\Form1.cs [Design]",
+              "ToolTip": "D:\\Documentos Daniel\\CODIGOS\\C#\\CarteiraDeClientes\\CarteiraDeClientes-main\\CarteiraDeClientes-main\\CarteiraDeClientes\\Form1.cs [Design]",
               "RelativeToolTip": "CarteiraDeClientes\\Form1.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-08-13T18:26:06.486Z",
               "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "RegistrarPedidoForm.cs [Design]",
+              "DocumentMoniker": "D:\\Documentos Daniel\\CODIGOS\\C#\\CarteiraDeClientes\\CarteiraDeClientes-main\\CarteiraDeClientes-main\\CarteiraDeClientes\\RegistrarPedidoForm.cs",
+              "RelativeDocumentMoniker": "CarteiraDeClientes\\RegistrarPedidoForm.cs",
+              "ToolTip": "D:\\Documentos Daniel\\CODIGOS\\C#\\CarteiraDeClientes\\CarteiraDeClientes-main\\CarteiraDeClientes-main\\CarteiraDeClientes\\RegistrarPedidoForm.cs [Design]",
+              "RelativeToolTip": "CarteiraDeClientes\\RegistrarPedidoForm.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-11T17:10:40.176Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "EstoqueForm.cs [Design]",
+              "DocumentMoniker": "D:\\Documentos Daniel\\CODIGOS\\C#\\CarteiraDeClientes\\CarteiraDeClientes-main\\CarteiraDeClientes-main\\CarteiraDeClientes\\EstoqueForm.cs",
+              "RelativeDocumentMoniker": "CarteiraDeClientes\\EstoqueForm.cs",
+              "ToolTip": "D:\\Documentos Daniel\\CODIGOS\\C#\\CarteiraDeClientes\\CarteiraDeClientes-main\\CarteiraDeClientes-main\\CarteiraDeClientes\\EstoqueForm.cs [Design]",
+              "RelativeToolTip": "CarteiraDeClientes\\EstoqueForm.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-11T19:29:47.853Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "EstoqueForm.cs",
+              "DocumentMoniker": "D:\\Documentos Daniel\\CODIGOS\\C#\\CarteiraDeClientes\\CarteiraDeClientes-main\\CarteiraDeClientes-main\\CarteiraDeClientes\\EstoqueForm.cs",
+              "RelativeDocumentMoniker": "CarteiraDeClientes\\EstoqueForm.cs",
+              "ToolTip": "D:\\Documentos Daniel\\CODIGOS\\C#\\CarteiraDeClientes\\CarteiraDeClientes-main\\CarteiraDeClientes-main\\CarteiraDeClientes\\EstoqueForm.cs",
+              "RelativeToolTip": "CarteiraDeClientes\\EstoqueForm.cs",
+              "ViewState": "AQIAAFIAAAAAAAAAAIA3wF0AAAAsAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-11T19:29:59.444Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "CadastroClienteForm.cs",
+              "DocumentMoniker": "D:\\Documentos Daniel\\CODIGOS\\C#\\CarteiraDeClientes\\CarteiraDeClientes-main\\CarteiraDeClientes-main\\CarteiraDeClientes\\CadastroClienteForm.cs",
+              "RelativeDocumentMoniker": "CarteiraDeClientes\\CadastroClienteForm.cs",
+              "ToolTip": "D:\\Documentos Daniel\\CODIGOS\\C#\\CarteiraDeClientes\\CarteiraDeClientes-main\\CarteiraDeClientes-main\\CarteiraDeClientes\\CadastroClienteForm.cs",
+              "RelativeToolTip": "CarteiraDeClientes\\CadastroClienteForm.cs",
+              "ViewState": "AQIAAAsAAAAAAAAAAAAQwDcAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-11T19:02:26.632Z",
+              "EditorCaption": ""
             }
           ]
         }

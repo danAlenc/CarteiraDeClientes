@@ -47,6 +47,12 @@ public partial class CadastroClienteForm : Form
 
     private void btnSalvar_Click(object sender, EventArgs e)
     {
+        if (string.IsNullOrWhiteSpace(txtNome.Text) || string.IsNullOrWhiteSpace(txtEndereco.Text))
+        {
+            MessageBox.Show("Nome e Endereço são campos obrigatórios.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            return;
+        }
+
         // Cria um novo cliente com os dados inseridos
         NovoCliente = new Cliente
         {
@@ -54,6 +60,7 @@ public partial class CadastroClienteForm : Form
             Nome = txtNome.Text,
             Email = txtEmail.Text,
             Telefone = txtTelefone.Text,
+            Endereco = txtEndereco.Text,
             UltimoPedido = dtpUltimoPedido.Value  // Captura a data selecionada
         };
 

@@ -10,6 +10,8 @@
             this.btnRegistrar = new System.Windows.Forms.Button();
             this.numValor = new System.Windows.Forms.NumericUpDown();
             this.label2 = new System.Windows.Forms.Label();
+            this.cboFormaPagamento = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.numValor)).BeginInit();
             this.SuspendLayout();
             // 
@@ -31,10 +33,10 @@
             // 
             // btnRegistrar
             // 
-            this.btnRegistrar.Location = new System.Drawing.Point(197, 71);
+            this.btnRegistrar.Location = new System.Drawing.Point(197, 89);
             this.btnRegistrar.Name = "btnRegistrar";
             this.btnRegistrar.Size = new System.Drawing.Size(75, 23);
-            this.btnRegistrar.TabIndex = 2;
+            this.btnRegistrar.TabIndex = 3;
             this.btnRegistrar.Text = "Registrar";
             this.btnRegistrar.UseVisualStyleBackColor = true;
             this.btnRegistrar.Click += new System.EventHandler(this.btnRegistrar_Click);
@@ -42,7 +44,7 @@
             // numValor
             // 
             this.numValor.DecimalPlaces = 2;
-            this.numValor.Location = new System.Drawing.Point(15, 71);
+            this.numValor.Location = new System.Drawing.Point(15, 89);
             this.numValor.Maximum = new decimal(new int[] {
             1000000,
             0,
@@ -50,23 +52,47 @@
             0});
             this.numValor.Name = "numValor";
             this.numValor.Size = new System.Drawing.Size(134, 20);
-            this.numValor.TabIndex = 1;
+            this.numValor.TabIndex = 2;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 55);
+            this.label2.Location = new System.Drawing.Point(12, 73);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(31, 13);
             this.label2.TabIndex = 5;
             this.label2.Text = "Valor";
+            // 
+            // cboFormaPagamento
+            // 
+            this.cboFormaPagamento.FormattingEnabled = true;
+            this.cboFormaPagamento.Items.AddRange(new object[] {
+            "Dinheiro",
+            "Pix",
+            "Cartão Credito",
+            "Cartão Debito"});
+            this.cboFormaPagamento.Location = new System.Drawing.Point(126, 51);
+            this.cboFormaPagamento.Name = "cboFormaPagamento";
+            this.cboFormaPagamento.Size = new System.Drawing.Size(146, 21);
+            this.cboFormaPagamento.TabIndex = 1;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(12, 54);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(108, 13);
+            this.label3.TabIndex = 7;
+            this.label3.Text = "Forma de Pagamento";
             // 
             // RegistrarPedidoForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.ClientSize = new System.Drawing.Size(284, 102);
+            this.ClientSize = new System.Drawing.Size(284, 121);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.cboFormaPagamento);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.btnRegistrar);
             this.Controls.Add(this.txtItemPedido);
@@ -89,6 +115,8 @@
         private System.Windows.Forms.Button btnRegistrar;
         private System.Windows.Forms.NumericUpDown numValor;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ComboBox cboFormaPagamento;
+        private System.Windows.Forms.Label label3;
     }
 
 }

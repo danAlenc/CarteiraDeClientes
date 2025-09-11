@@ -14,6 +14,7 @@ namespace CarteiraDeClientes
     {
         public string ItemPedido { get; private set; }
         public decimal Valor { get; private set; }
+        public string FormaPagamento { get; private set; }
 
         public RegistrarPedidoForm()
         {
@@ -25,9 +26,11 @@ namespace CarteiraDeClientes
             // Captura o texto inserido no TextBox e o armazena na propriedade ItemPedido
             ItemPedido = txtItemPedido.Text;
             Valor = numValor.Value;
+            FormaPagamento = cboFormaPagamento.Text;
+
 
             // Verifica se o usuário inseriu um texto válido
-            if (!string.IsNullOrWhiteSpace(ItemPedido))
+            if (!string.IsNullOrWhiteSpace(ItemPedido) && !string.IsNullOrWhiteSpace(FormaPagamento) && Valor > 0)
             {
                 // Define o resultado do formulário como OK e fecha o formulário
                 this.DialogResult = DialogResult.OK;
@@ -39,7 +42,7 @@ namespace CarteiraDeClientes
             else
             {
                 // Exibe uma mensagem de aviso se o campo estiver vazio
-                MessageBox.Show("Por favor, insira um item válido.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Por favor, preencha o item, o valor e a forma de pagamento.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 

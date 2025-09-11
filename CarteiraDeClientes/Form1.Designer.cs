@@ -38,6 +38,7 @@
             this.btnBuscarCliente = new System.Windows.Forms.Button();
             this.btnSair = new System.Windows.Forms.Button();
             this.btnMostrarTodos = new System.Windows.Forms.Button();
+            this.btnEstoque = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewClientes)).BeginInit();
             this.SuspendLayout();
             // 
@@ -130,11 +131,22 @@
             this.btnMostrarTodos.UseVisualStyleBackColor = true;
             this.btnMostrarTodos.Click += new System.EventHandler(this.btnMostrarTodos_Click);
             // 
+            // btnEstoque
+            // 
+            this.btnEstoque.Location = new System.Drawing.Point(561, 215);
+            this.btnEstoque.Name = "btnEstoque";
+            this.btnEstoque.Size = new System.Drawing.Size(117, 23);
+            this.btnEstoque.TabIndex = 10;
+            this.btnEstoque.Text = "Estoque";
+            this.btnEstoque.UseVisualStyleBackColor = true;
+            this.btnEstoque.Click += new System.EventHandler(this.btnEstoque_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(683, 371);
+            this.Controls.Add(this.btnEstoque);
             this.Controls.Add(this.btnMostrarTodos);
             this.Controls.Add(this.btnSair);
             this.Controls.Add(this.btnBuscarCliente);
@@ -164,6 +176,7 @@
         private System.Windows.Forms.Button btnBuscarCliente;
         private System.Windows.Forms.Button btnSair;
         private System.Windows.Forms.Button btnMostrarTodos;
+        private System.Windows.Forms.Button btnEstoque;
     }
 }
 
