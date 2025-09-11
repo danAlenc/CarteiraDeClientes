@@ -14,6 +14,8 @@
             this.labelUltimoPedido = new System.Windows.Forms.Label();
             this.dtpUltimoPedido = new System.Windows.Forms.DateTimePicker();
             this.btnSalvar = new System.Windows.Forms.Button();
+            this.txtEndereco = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // labelId
@@ -100,19 +102,37 @@
             // 
             // btnSalvar
             // 
-            this.btnSalvar.Location = new System.Drawing.Point(205, 165);
+            this.btnSalvar.Location = new System.Drawing.Point(205, 197);
             this.btnSalvar.Name = "btnSalvar";
             this.btnSalvar.Size = new System.Drawing.Size(75, 23);
-            this.btnSalvar.TabIndex = 10;
+            this.btnSalvar.TabIndex = 13;
             this.btnSalvar.Text = "Salvar";
             this.btnSalvar.UseVisualStyleBackColor = true;
             this.btnSalvar.Click += new System.EventHandler(this.btnSalvar_Click);
+            // 
+            // txtEndereco
+            // 
+            this.txtEndereco.Location = new System.Drawing.Point(80, 155);
+            this.txtEndereco.Name = "txtEndereco";
+            this.txtEndereco.Size = new System.Drawing.Size(200, 20);
+            this.txtEndereco.TabIndex = 11;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(8, 158);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(56, 13);
+            this.label1.TabIndex = 12;
+            this.label1.Text = "Endereço:";
             // 
             // CadastroClienteForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(292, 200);
+            this.ClientSize = new System.Drawing.Size(292, 232);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.txtEndereco);
             this.Controls.Add(this.btnSalvar);
             this.Controls.Add(this.dtpUltimoPedido);
             this.Controls.Add(this.labelUltimoPedido);
@@ -144,4 +164,6 @@
     private System.Windows.Forms.Label labelUltimoPedido;
     private System.Windows.Forms.DateTimePicker dtpUltimoPedido;
     private System.Windows.Forms.Button btnSalvar;
+    private System.Windows.Forms.TextBox txtEndereco;
+    private System.Windows.Forms.Label label1;
 }
